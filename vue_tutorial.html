@@ -13,13 +13,17 @@
   <div class="product">
     <div class="product-image">
       <!-- shorthand for `v-bind:src` -->
-      <img alt="" :src="image">
+      <img :src="image" alt="">
     </div>
 
     <div class="product-info">
       <h1>{{ product }}</h1>
 
-      <button @click="addToCart">Add to Cart</button>
+      <!-- Style Binding -->
+      <!-- `disabledButton` class and `disabled` attribute is added when it's true -->
+      <button :class="{ disabledButton: !inStock }"
+              :disabled="!inStock"
+              @click="addToCart">Add to Cart</button>
       <button @click="removeFromCart" v-show="cart > 0">Remove from Cart</button>
 
       <div class="cart">
@@ -46,9 +50,12 @@
       </ul>
 
       <h3>Variants</h3>
-      <div v-for="variant in variants" :key="variant.variantId">
-        <!-- Note: @ is the shorthand to 'v-on' because it's so common. -->
-        <p @mouseover="updateProduct(variant.variantImage)">{{ variant.variantColour }}</p>
+      <!-- Note: @ is the shorthand to 'v-on' because it's so common. -->
+      <div :key="variant.variantId"
+           :style="{ backgroundColor: variant.variantColour }"
+           @mouseover="updateProduct(variant.variantImage)"
+           class="color-box"
+           v-for="variant in variants">
       </div>
 
       <h3>Sizes</h3>
