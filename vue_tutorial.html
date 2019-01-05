@@ -12,7 +12,7 @@
 <div id="app">
   <div class="product">
     <div class="product-image">
-      <!-- shorthand for `v-bind:src` -->
+      <!-- :src is the shorthand for `v-bind:src` -->
       <img :src="image" alt="">
     </div>
 
@@ -35,14 +35,6 @@
 
       <hr>
 
-      <p v-if="inventory > 10">In Stock</p>
-      <p v-else-if="inventory <= 10 && inventory > 0">Almost</p>
-      <p v-else>Out of Stock</p>
-
-      <hr>
-
-      <p v-show="inStock">Testing v-show</p>
-
       <h3>Details</h3>
       <ul>
         <!-- Note: detail is an alias. details is a collection. -->
@@ -51,11 +43,11 @@
 
       <h3>Variants</h3>
       <!-- Note: @ is the shorthand to 'v-on' because it's so common. -->
-      <div :key="variant.variantId"
+      <div v-for="(variant, index) in variants"
+           :key="variant.variantId"
            :style="{ backgroundColor: variant.variantColour }"
-           @mouseover="updateProduct(variant.variantImage)"
-           class="color-box"
-           v-for="variant in variants">
+           @mouseover="updateProduct(index)"
+           class="color-box">
       </div>
 
       <h3>Sizes</h3>
