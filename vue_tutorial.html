@@ -29,6 +29,22 @@
       <hr>
 
       <p v-show="inStock">Testing v-show</p>
+
+      <h3>Details</h3>
+      <ul>
+        <li v-for="detail in details">{{ detail }}</li>
+      </ul>
+
+      <h3>Variants</h3>
+      <div v-for="variant in variants" :key="variant.variantId">
+        <p>{{ variant.variantColour }}</p>
+      </div>
+
+      <h3>Sizes</h3>
+      <ul>
+        <li v-for="size in sizes">{{ size }}</li>
+      </ul>
+
     </div>
   </div>
 </div>
