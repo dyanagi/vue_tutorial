@@ -3,12 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>Vue Tutorial</title>
+  <link href="assets/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
+<div class="nav-bar"></div>
+
 <div id="app">
-  <h1 v-bind:style="isStyled">{{ product }}</h1>
-  <img v-bind:src="image" alt="">
+  <div class="product">
+    <div class="product-image">
+      <img alt="" v-bind:src="image">
+    </div>
+
+    <div class="product-info">
+      <h1>{{ product }}</h1>
+      <p v-if="inStock">In Stock</p>
+      <p v-else>Out of Stock</p>
+
+      <hr>
+
+      <p v-if="inventory > 10">In Stock</p>
+      <p v-else-if="inventory <= 10 && inventory > 0">Almost</p>
+      <p v-else>Out of Stock</p>
+
+      <hr>
+
+      <p v-show="inStock">Testing v-show</p>
+    </div>
+  </div>
 </div>
 
 <script src="node_modules/vue/dist/vue.js"></script>
