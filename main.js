@@ -20,14 +20,11 @@ Vue.component('product', {
     <button :class="{ disabledButton: !inStock }"
             :disabled="!inStock"
             @click="addToCart">Add to Cart</button>
-    <button @click="removeFromCart" v-show="cart > 0">Remove from Cart</button>
-  
-    <div class="cart">
-      <p>Cart ({{ cart }})</p>
-    </div>
   
     <p v-if="inStock">In Stock</p>
     <p v-else>Out of Stock</p>
+    
+    <p>Shipping: {{ shipping}}</p>
   
     <hr>
   
@@ -74,17 +71,13 @@ Vue.component('product', {
           variantQuantity: 0
         }
       ],
-      sizes: ["L", "M", "S"],
-      cart: 0
+      sizes: ["L", "M", "S"]
     }
   },
   methods: {
     // ES6 shorthand: 'addToCart()'. Not all browsers may support this feature.
     addToCart: function () {
-      this.cart += 1
-    },
-    removeFromCart: function () {
-      this.cart = 0
+      this.$emit('add-to-cart', this.variants[this.variantId])
     },
     updateProduct: function (index) {
       this.selectedVariant = index;
@@ -101,10 +94,29 @@ Vue.component('product', {
     },
     inStock() {
       return this.variants[this.selectedVariant].variantQuantity // 0 is "falsey"
+    },
+    shipping() {
+      if (this.premium) {
+        return 'Free'
+      } else {
+        return 2.99
+      }
     }
   }
 });
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    // premium: false,
+    cart: []
+  },
+  methods: {
+    updateCart: function () {
+      this.cart += 1
+    },
+    emptyCart: function () {
+      this.cart = []
+    }
+  }
 });

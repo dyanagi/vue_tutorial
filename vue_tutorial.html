@@ -10,7 +10,13 @@
 <div class="nav-bar"></div>
 
 <div id="app">
-  <product :premium="true"></product>
+  <div class="cart">
+    <p>Cart ({{ cart.length }})</p>
+  </div>
+
+  <button @click="emptyCart" v-show="cart.length > 0">Empty Cart</button>
+
+  <product :premium="false" @add-to-cart="updateCart"></product>
 </div>
 
 <script src="node_modules/vue/dist/vue.js"></script>
