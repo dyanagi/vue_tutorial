@@ -12,11 +12,20 @@
 <div id="app">
   <div class="product">
     <div class="product-image">
-      <img alt="" v-bind:src="image">
+      <!-- shorthand for `v-bind:src` -->
+      <img alt="" :src="image">
     </div>
 
     <div class="product-info">
       <h1>{{ product }}</h1>
+
+      <button @click="addToCart">Add to Cart</button>
+      <button @click="removeFromCart" v-show="cart > 0">Remove from Cart</button>
+
+      <div class="cart">
+        <p>Cart ({{ cart }})</p>
+      </div>
+
       <p v-if="inStock">In Stock</p>
       <p v-else>Out of Stock</p>
 
@@ -32,12 +41,14 @@
 
       <h3>Details</h3>
       <ul>
+        <!-- Note: detail is an alias. details is a collection. -->
         <li v-for="detail in details">{{ detail }}</li>
       </ul>
 
       <h3>Variants</h3>
       <div v-for="variant in variants" :key="variant.variantId">
-        <p>{{ variant.variantColour }}</p>
+        <!-- Note: @ is the shorthand to 'v-on' because it's so common. -->
+        <p @mouseover="updateProduct(variant.variantImage)">{{ variant.variantColour }}</p>
       </div>
 
       <h3>Sizes</h3>
