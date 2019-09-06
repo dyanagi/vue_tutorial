@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue Tutorial</title>
+  </head>
+  <body>
+    <h1>Vue: Vue Instance & Data Binding</h1>
+    
+    <div id="outside-instance">
+      <h2>{{ product }} will not render the data</h2><!-- "{{ product }}" will be displayed because it's outside of vue instance. -->
+    </div>
+
+    <hr>
+
+    <div id="this-is-vue-instance">
+      <h2>{{ product + number }}</h2><!-- "Phones" will be displayed -->
+
+      <p>Following 3 img tags display the same picture.</p>
+      <img src="./assets/blue-socks.jpg" alt="">
+      <img :src="image" alt="">
+      <img v-bind:src="image" alt="">
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+    var app = new Vue({
+      el: "#this-is-vue-instance", // Vue.js will be activated inside the element.
+      data: {
+        product: "Phones", // Display this data by an expression like {{ product }}
+        number: 100,
+        image: "./assets/blue-socks.jpg"
+      }
+    });
+    </script>
+  </body>
+</html>

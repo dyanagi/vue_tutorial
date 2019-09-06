@@ -9,3 +9,4 @@ Have `npm` Version 6.9.0 or later. Run `npm install`. Then, open an HTML file in
 ## HTML Files
 
 * `vue_tutorial.html`, `main.js` - [Intro to Vue.js - VueMastery](https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/)
+* `review-01-instance.html` - Vue instance and data binding
